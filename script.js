@@ -297,6 +297,21 @@
 
     setupScrollAnimation();
     setupScrollRevealBlur();
+
+    const topbar = document.querySelector(".topbar");
+    if (topbar) {
+      const threshold = () => topbar.offsetHeight || 66;
+      function updateTopbarVisibility() {
+        const y = window.scrollY || window.pageYOffset;
+        if (y > threshold()) {
+          topbar.classList.add("topbar--hidden");
+        } else {
+          topbar.classList.remove("topbar--hidden");
+        }
+      }
+      window.addEventListener("scroll", updateTopbarVisibility, { passive: true });
+      updateTopbarVisibility();
+    }
   }
 
   init();
