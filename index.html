@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Status das Entregas de Projetos</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Onest:wght@100..900&family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap");
+  </style>
+  <link rel="stylesheet" href="./styles.css" />
+  <meta name="color-scheme" content="light" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+
+<body>
+  <div class="loading-screen" id="loadingScreen">
+    <div class="loading-bg loading-bg--unloaded"></div>
+    <div class="loading-bg loading-bg--loaded"></div>
+    <div class="loading-logo">
+      <img src="./imgs/logo.svg" alt="Logo" />
+    </div>
+    <div class="loading-cta" id="loadingCTA">
+      <span class="loading-cta__text">Clique para continuar</span>
+      <span class="loading-cta__arrow">↓</span>
+    </div>
+  </div>
+
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
+  <div class="bg-noise" aria-hidden="true"></div>
+
+  <main>
+
+    <header class="topbar">
+      <div class="container topbar__inner">
+        <div class="brand">
+          <span class="brand__dot" aria-hidden="true"></span>
+          <span class="brand__name">STATUS DAS ENTREGAS</span>
+        </div>
+
+        <nav class="nav">
+          <a class="nav__link" href="#visao-geral">Visão Geral</a>
+          <a class="nav__link" href="#evolucao">Evolução</a>
+          <a class="nav__link" href="#pendencias">Pendências</a>
+          <a class="nav__link" href="#operacional">Operacional</a>
+          <a class="nav__link" href="#capacidade">Capacidade</a>
+        </nav>
+
+        <button class="btn btn--ghost" id="btnScrollResumo" type="button">
+          Resumo
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <!-- HERO ------------------------------------------------------------ -->
+      <section class="hero" aria-label="Capa com visão geral">
+        <div class="container hero__content">
+          <div class="hero__headline">
+            <p class="kicker">Visão Geral e Performance</p>
+            <h1 class="title">Status das Entregas de Projetos</h1>
+            <p class="subtitle">
+              Painel executivo para acompanhar projetos ativos, progresso em relação à meta,
+              pendências, demandas operacionais e capacidade produtiva.
+            </p>
+          </div>
+
+
+        </div>
+      </section>
+
+      <!-- 1. VISÃO GERAL -------------------------------------------------- -->
+      <section class="section" id="visao-geral">
+        <div class="container">
+
+          <header class="section__head">
+            <p class="section__kicker">1. Visão Geral</p>
+            <h2 class="section__title">Status das Entregas</h2>
+            <p class="section__desc">
+              Indicadores principais de projetos ativos, meta e progresso de entrega.
+            </p>
+          </header>
+
+          <div class="grid grid--3">
+            <article class="card">
+              <h3 class="card__title">Projetos Ativos</h3>
+              <p class="card__muted">Base inicial do portfólio</p>
+              <p class="card__metric">36</p>
+            </article>
+
+            <article class="card">
+              <h3 class="card__title">Meta de Entregas</h3>
+              <p class="card__muted">80% (~28,8 un.)</p>
+              <p class="card__metric">28.8</p>
+            </article>
+
+            <article class="card">
+              <h3 class="card__title">Progresso</h3>
+              <p class="card__muted">Em relação à meta</p>
+              <p class="card__metric">80%</p>
+              <div class="meter meter--lg" aria-label="Progresso 80%">
+                <div class="meter__bar" style="--p: 80%"></div>
+              </div>
+            </article>
+
+            <article class="card">
+              <p class="card__metric card__metric--accent">+19,4%</p>
+              <p class="card__muted">Crescimento do portfólio</p>
+            </article>
+
+            <article class="card">
+              <p class="card__metric">97.2</p>
+              <p class="card__muted">Índice de entrega</p>
+            </article>
+
+            <article class="card">
+              <p class="card__metric">3.413</p>
+              <p class="card__muted">Volume de chamados</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. EVOLUÇÃO ----------------------------------------------------- -->
+      <section class="section section--split" id="evolucao">
+        <div class="container split">
+          <div class="split__left">
+            <header class="section__head section__head--tight">
+              <p class="section__kicker">2. Evolução do Portfólio</p>
+              <h2 class="section__title">Crescimento & Performance</h2>
+              <p class="section__desc">
+                Evolução mensal em volume de projetos e taxa de crescimento.
+              </p>
+            </header>
+
+            <div class="grid grid--2">
+              <article class="card card--soft">
+                <h3 class="card__title">Crescimento do período</h3>
+                <p class="card__metric card__metric--accent">+19,4%</p>
+              </article>
+              <article class="card card--soft">
+                <h3 class="card__title">Novos Projetos</h3>
+                <p class="card__metric">7</p>
+              </article>
+              <article class="card card--soft">
+                <h3 class="card__title">Total de Projetos</h3>
+                <p class="card__metric">43</p>
+              </article>
+              <article class="card card--soft">
+                <h3 class="card__title">Média Mensal</h3>
+                <p class="card__metric">4</p>
+              </article>
+            </div>
+          </div>
+
+          <div class="split__right">
+            <article class="panel">
+              <div class="panel__head">
+                <h3 class="panel__title">Linha do tempo</h3>
+                <p class="panel__sub">Base → Atual (36 → 43 projetos)</p>
+              </div>
+              <div class="panel__body">
+                <canvas id="portfolioChart" class="chart" width="620" height="280" aria-label="Gráfico de evolução do portfólio"></canvas>
+                <div class="legend" aria-hidden="true">
+                  <span class="legend__dot legend__dot--accent"></span>
+                  <span>Evolução do total de projetos</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. PENDÊNCIAS --------------------------------------------------- -->
+      <section class="section" id="pendencias">
+        <div class="container">
+          <header class="section__head">
+            <p class="section__kicker">3. Status dos Projetos</p>
+            <h2 class="section__title">Análise de Pendências</h2>
+            <p class="section__desc">
+              Distribuição entre concluídos e não concluídos, com taxa de conclusão.
+            </p>
+          </header>
+
+          <div class="grid grid--2">
+            <article class="panel">
+              <div class="panel__head">
+                <h3 class="panel__title">Não Concluídos</h3>
+                <p class="panel__sub">Projetos em aberto ou atrasados</p>
+              </div>
+              <div class="panel__body kpirow">
+                <div class="kpi">
+                  <div class="kpi__value">22,2%</div>
+                  <div class="kpi__label">Taxa de pendência</div>
+                </div>
+                <div class="kpi">
+                  <div class="kpi__value">8</div>
+                  <div class="kpi__label">Projetos em aberto</div>
+                </div>
+                <div class="callout callout--ok">
+                  <div class="callout__title">Índice de Performance</div>
+                  <div class="callout__value">Satisfatório</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="panel">
+              <div class="panel__head">
+                <h3 class="panel__title">Conclusão</h3>
+                <p class="panel__sub">Concluídos vs Pendentes</p>
+              </div>
+              <div class="panel__body donut">
+                <div class="donut__left">
+                  <canvas id="completionDonut" class="donut__canvas" width="240" height="240" aria-label="Gráfico de conclusão"></canvas>
+                </div>
+                <div class="donut__right">
+                  <div class="kpi kpi--stack">
+                    <div class="kpi__value">97.2</div>
+                    <div class="kpi__label">Índice de entrega</div>
+                  </div>
+                  <div class="mini">
+                    <div class="mini__row">
+                      <span class="mini__swatch mini__swatch--accent"></span>
+                      <span class="mini__label">Concluídos</span>
+                      <span class="mini__value">78%</span>
+                    </div>
+                    <div class="mini__row">
+                      <span class="mini__swatch mini__swatch--muted"></span>
+                      <span class="mini__label">Pendentes</span>
+                      <span class="mini__value">22%</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAIXA / RIBBON -------------------------------------------------- -->
+      <section class="ribbon" aria-label="Volume de Suporte e Atendimento">
+        <div class="container ribbon__inner">
+          <header class="ribbon__text">
+            <p class="ribbon__kicker">Volume de Suporte & Atendimento</p>
+            <h2 class="ribbon__title">Alta demanda operacional impactando a equipe</h2>
+            <p class="ribbon__desc">
+              Volume operacional significativamente alto comparado às demandas de desenvolvimento.
+            </p>
+          </header>
+          <div class="ribbon__cards">
+            <article class="ribbonCard ribbonCard--featured">
+              <span class="ribbonCard__label">Volume Total</span>
+              <span class="ribbonCard__value">3.413</span>
+              <span class="ribbonCard__hint">284 chamados/mês</span>
+            </article>
+            <article class="ribbonCard">
+              <span class="ribbonCard__label">Média Semanal</span>
+              <span class="ribbonCard__value">57</span>
+              <span class="ribbonCard__hint">chamados</span>
+            </article>
+            <article class="ribbonCard">
+              <span class="ribbonCard__label">Chamados "PD"</span>
+              <span class="ribbonCard__value">6</span>
+              <span class="ribbonCard__hint">Alta complexidade técnica</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. OPERACIONAL -------------------------------------------------- -->
+      <section class="section" id="operacional">
+        <div class="container">
+          <header class="section__head">
+            <p class="section__kicker">4. Demandas Operacionais</p>
+            <h2 class="section__title">Volume de Suporte & Atendimento</h2>
+            <p class="section__desc">
+              Indicadores e contexto operacional. Os campos de imagem abaixo estão vazios
+              para você adicionar gráficos ou fotos depois.
+            </p>
+          </header>
+
+          <div class="grid grid--3">
+            <article class="card card--image">
+              <div class="img-ph">
+                <span class="img-ph__label">Imagem/Gráfico</span>
+              </div>
+              <h3 class="card__title">Contexto operacional</h3>
+              <p class="card__muted">Comparativo visual, heatmap, etc.</p>
+            </article>
+            <article class="card card--image">
+              <div class="img-ph">
+                <span class="img-ph__label">Imagem/Gráfico</span>
+              </div>
+              <h3 class="card__title">Distribuição</h3>
+              <p class="card__muted">Categorias de chamados por tipo/urgência.</p>
+            </article>
+            <article class="card card--image">
+              <div class="img-ph">
+                <span class="img-ph__label">Imagem/Gráfico</span>
+              </div>
+              <h3 class="card__title">Séries temporais</h3>
+              <p class="card__muted">Tendências semanais/mensais.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. CAPACIDADE --------------------------------------------------- -->
+      <section class="section section--split" id="capacidade">
+        <div class="container split">
+          <div class="split__left">
+            <header class="section__head section__head--tight">
+              <p class="section__kicker">5. Capacidade Produtiva</p>
+              <h2 class="section__title">Gestão de Recursos</h2>
+              <p class="section__desc">Distribuição de horas dedicadas aos projetos.</p>
+            </header>
+
+            <article class="panel">
+              <div class="panel__head">
+                <h3 class="panel__title">Horas Dedicadas por Mês</h3>
+                <p class="panel__sub">Capacidade disponível</p>
+              </div>
+              <div class="panel__body capacity">
+                <div class="capacity__kpi">
+                  <div class="capacity__value">176</div>
+                  <div class="capacity__label">horas/mês</div>
+                </div>
+                <div class="capacity__bars" aria-label="Distribuição de horas">
+                  <div class="capbar">
+                    <div class="capbar__label">Projetos</div>
+                    <div class="capbar__track">
+                      <div class="capbar__fill" style="--p: 62%"></div>
+                    </div>
+                    <div class="capbar__value">62%</div>
+                  </div>
+                  <div class="capbar">
+                    <div class="capbar__label">Sustentação</div>
+                    <div class="capbar__track">
+                      <div class="capbar__fill capbar__fill--muted" style="--p: 38%"></div>
+                    </div>
+                    <div class="capbar__value">38%</div>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="split__right">
+            <article class="panel">
+              <div class="panel__head">
+                <h3 class="panel__title">Área de imagem reservada</h3>
+                <p class="panel__sub">Você adiciona o conteúdo depois</p>
+              </div>
+              <div class="panel__body">
+                <div class="img-ph img-ph--tall">
+                  <span class="img-ph__label">Imagem</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- RESUMO --------------------------------------------------------- -->
+      <section class="section" id="resumo">
+        <div class="container">
+          <header class="section__head">
+            <p class="section__kicker">Síntese de Resultados</p>
+            <h2 class="section__title">Conclusão Executiva</h2>
+            <p class="section__desc">Resumo dos principais pontos do painel.</p>
+          </header>
+
+          <div class="grid grid--2">
+            <article class="summaryCard">
+              <h3 class="summaryCard__title">Crescimento do Portfólio</h3>
+              <p class="summaryCard__text">Expansão de +19,4% com 7 novos projetos.</p>
+            </article>
+            <article class="summaryCard">
+              <h3 class="summaryCard__title">Excelente Performance</h3>
+              <p class="summaryCard__text">Índice de entrega de 97,2%, mantendo qualidade.</p>
+            </article>
+            <article class="summaryCard">
+              <h3 class="summaryCard__title">Alta Demanda Operacional</h3>
+              <p class="summaryCard__text">
+                Volume significativo de 3.413 chamados impactando a equipe.
+              </p>
+            </article>
+            <article class="summaryCard">
+              <h3 class="summaryCard__title">Necessidade de Balanceamento</h3>
+              <p class="summaryCard__text">
+                Ajuste crítico entre sustentação e novos projetos.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="scroll-buttons">
+      <button class="scroll-btn scroll-btn--up" id="btnScrollUp" aria-label="Rolar para cima">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 4L13 9L11.6 10.4L8 6.8L4.4 10.4L3 9L8 4Z" fill="currentColor" />
+        </svg>
+      </button>
+      <button class="scroll-btn scroll-btn--down" id="btnScrollDown" aria-label="Rolar para baixo">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 12L3 7L4.4 5.6L8 9.2L11.6 5.6L13 7L8 12Z" fill="currentColor" />
+        </svg>
+      </button>
+    </div>
+
+    <script id="vertexShader" type="x-shader/x-vertex">
+    varying vec2 vUv;
+    void main() {
+      vUv = uv;
+      gl_Position = vec4( position, 1.0 );
+    }
+  </script>
+
+    <script id="fragmentShader" type="x-shader/x-fragment">
+    varying vec2 vUv;
+    uniform float time;
+    uniform int stripe_count;
+    uniform float stripe_size;
+    uniform float noise_zoom;
+    
+    vec4 permute(vec4 x){return mod(((x*34.0)+1.0)*x, 289.0);}
+    vec4 taylorInvSqrt(vec4 r){return 1.79284291400159 - 0.85373472095314 * r;}
+
+    float snoise(vec3 v){ 
+      const vec2  C = vec2(1.0/6.0, 1.0/3.0) ;
+      const vec4  D = vec4(0.0, 0.5, 1.0, 2.0);
+      vec3 i  = floor(v + dot(v, C.yyy) );
+      vec3 x0 =   v - i + dot(i, C.xxx) ;
+      vec3 g = step(x0.yzx, x0.xyz);
+      vec3 l = 1.0 - g;
+      vec3 i1 = min( g.xyz, l.zxy );
+      vec3 i2 = max( g.xyz, l.zxy );
+      vec3 x1 = x0 - i1 + 1.0 * C.xxx;
+      vec3 x2 = x0 - i2 + 2.0 * C.xxx;
+      vec3 x3 = x0 - 1. + 3.0 * C.xxx;
+      i = mod(i, 289.0 ); 
+      vec4 p = permute( permute( permute( 
+                 i.z + vec4(0.0, i1.z, i2.z, 1.0 ))
+               + i.y + vec4(0.0, i1.y, i2.y, 1.0 )) 
+               + i.x + vec4(0.0, i1.x, i2.x, 1.0 ));
+      float n_ = 1.0/7.0;
+      vec3  ns = n_ * D.wyz - D.xzx;
+      vec4 j = p - 49.0 * floor(p * ns.z *ns.z);
+      vec4 x_ = floor(j * ns.z);
+      vec4 y_ = floor(j - 7.0 * x_ );
+      vec4 x = x_ *ns.x + ns.yyyy;
+      vec4 y = y_ *ns.x + ns.yyyy;
+      vec4 h = 1.0 - abs(x) - abs(y);
+      vec4 b0 = vec4( x.xy, y.xy );
+      vec4 b1 = vec4( x.zw, y.zw );
+      vec4 s0 = floor(b0)*2.0 + 1.0;
+      vec4 s1 = floor(b1)*2.0 + 1.0;
+      vec4 sh = -step(h, vec4(0.0));
+      vec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy ;
+      vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww ;
+      vec3 p0 = vec3(a0.xy,h.x);
+      vec3 p1 = vec3(a0.zw,h.y);
+      vec3 p2 = vec3(a1.xy,h.z);
+      vec3 p3 = vec3(a1.zw,h.w);
+      vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2, p2), dot(p3,p3)));
+      p0 *= norm.x;
+      p1 *= norm.y;
+      p2 *= norm.z;
+      p3 *= norm.w;
+      vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);
+      m = m * m;
+      return 42.0 * dot( m*m, vec4( dot(p0,x0), dot(p1,x1), 
+                                    dot(p2,x2), dot(p3,x3) ) );
+    }
+    
+    void main() {
+      vec2 center = vec2(0.5, 0.5);
+      vec2 uv = vUv - center;
+      
+      float dist = length(uv);
+      float angle = atan(uv.y, uv.x);
+      
+      float noise = snoise(vec3(vUv.xy * (1.0 + ((1.0 - noise_zoom) * 9.0)), time));
+      float noiseDistortion = noise * 0.15;
+      
+      dist += noiseDistortion;
+      
+      float stripeWidth = (1.0 / float(stripe_count)) * stripe_size;
+      float lineIntensity = 0.0;
+      
+      for (int i = 0; i < 100; i++) {
+        if (i < stripe_count) {
+          float circleRadius = float(i) / float(stripe_count);
+          circleRadius += time * 0.02;
+          circleRadius = mod(circleRadius, 1.0);
+          
+          float distToCircle = abs(dist - circleRadius);
+          
+          if (distToCircle < stripeWidth * 0.5) {
+            lineIntensity = 0.04;
+          }
+        }
+      }
+      
+      vec3 col = vec3(1.0 - lineIntensity);
+      gl_FragColor = vec4(col, 1.0);
+    }
+  </script>
+
+    <script src="./script.js"></script>
+    <script src="./bg-animation.js"></script>
+</body>
+
+</html>
